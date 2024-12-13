@@ -9,7 +9,7 @@ static const int bypass_surface_visibility = 0;  /* 1 means idle inhibitors will
 static const unsigned int borderpx         = 1;  /* border pixel of windows */
 static const int showbar                   = 1; /* 0 means no bar */
 static const int topbar                    = 1; /* 0 means bottom bar */
-static const char *fonts[]                 = {"monospace:size=10"};
+static const char *fonts[]                 = {"monospace:size=16"};
 static const float rootcolor[]             = COLOR(0x000000ff);
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
 static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f}; /* You can also use glsl colors */
@@ -40,6 +40,9 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+  { "TTT",      bstack },
+  { "===",      bstackhoriz },
+	{ "[D]",      deck },
 };
 
 /* monitors */
@@ -126,7 +129,7 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* commands */
 static const char *termcmd[] = { "foot", "--font=Deja Vu Sans Mono:size=16", NULL };
-static const char *menucmd[] = { "wmenu-run", "-f", "Deja Vu Sans Mono:size=16", NULL };
+static const char *menucmd[] = { "wmenu-run", "-f", "Monospace 16", NULL };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
@@ -146,6 +149,9 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_t,          setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                    XKB_KEY_f,          setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                    XKB_KEY_m,          setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                    XKB_KEY_u,          setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                    XKB_KEY_o,          setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                    XKB_KEY_s,          setlayout,      {.v = &layouts[5]} },
 	{ MODKEY,                    XKB_KEY_space,      setlayout,      {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_space,      togglefloating, {0} },
 	{ MODKEY,                    XKB_KEY_e,         togglefullscreen, {0} },
